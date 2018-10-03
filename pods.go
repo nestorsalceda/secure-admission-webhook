@@ -26,12 +26,6 @@ import (
 	"k8s.io/api/admission/v1beta1"
 )
 
-const (
-	podsInitContainerPatch string = `[
-		 {"op":"add","path":"/spec/initContainers","value":[{"image":"webhook-added-image","name":"webhook-added-init-container","resources":{}}]}
-	]`
-)
-
 // only allow pods to pull images from specific registry.
 func admitPods(ar v1beta1.AdmissionReview) *v1beta1.AdmissionResponse {
 	glog.V(2).Info("admitting pods")
